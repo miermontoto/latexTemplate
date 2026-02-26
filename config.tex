@@ -5,6 +5,10 @@
 \definecolor{gris}{RGB}{220,220,220}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 \definecolor{darkgreen}{rgb}{0.0, 0.5, 0.0}
+\definecolor{codepurple}{rgb}{0.58, 0.0, 0.83}
+\definecolor{codeblue}{rgb}{0.0, 0.0, 0.8}
+\definecolor{codegray}{rgb}{0.5, 0.5, 0.5}
+\definecolor{codeorange}{rgb}{0.8, 0.4, 0.0}
 
 \setcounter{secnumdepth}{3} % Para permitir numerar las sub-subsecciones
 
@@ -97,43 +101,167 @@
 % estilo de código por defecto
 \lstdefinestyle{default}{
   basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{codeblue}\bfseries,
+  stringstyle=\color{codepurple},
+  commentstyle=\color{codegray}\itshape,
+  numberstyle=\tiny\color{codegray},
   breakatwhitespace=false,
   breaklines=true,
   captionpos=b,
   keepspaces=true,
   numbers=left,
   numbersep=5pt,
-  numberstyle=\tiny\color{black},
   showspaces=false,
   showstringspaces=false,
   showtabs=false,
   tabsize=2,
   backgroundcolor=\color{backcolour},
+  rulecolor=\color{gris},
+  frame=single,
   postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
 }
 
 \lstset{style=default}
 
-% estilo de código para yaml
+%% definiciones de lenguajes no soportados nativamente por listings
+
+\lstdefinelanguage{JavaScript}{
+  morekeywords={break, case, catch, class, const, continue, debugger, default,
+    delete, do, else, enum, export, extends, finally, for, function, if,
+    implements, import, in, instanceof, interface, let, new, of, package,
+    private, protected, public, return, static, super, switch, this, throw,
+    try, typeof, var, void, while, with, yield, async, await, from, as},
+  morestring=[b]",
+  morestring=[b]',
+  morestring=[b]`,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  sensitive=true,
+}
+
+\lstdefinelanguage{TypeScript}[]{JavaScript}{
+  morekeywords={type, namespace, declare, module, abstract, readonly,
+    keyof, infer, unique, unknown, never, any, boolean, number, string,
+    symbol, bigint, object, undefined, null, asserts, is, override,
+    satisfies, using},
+}
+
+\lstdefinelanguage{Go}{
+  morekeywords={break, case, chan, const, continue, default, defer, else,
+    fallthrough, for, func, go, goto, if, import, interface, map, package,
+    range, return, select, struct, switch, type, var, nil, true, false,
+    iota, append, cap, close, copy, delete, len, make, new, panic, print,
+    println, recover, error, string, int, int8, int16, int32, int64,
+    uint, uint8, uint16, uint32, uint64, float32, float64, complex64,
+    complex128, byte, rune, bool, any},
+  morestring=[b]",
+  morestring=[b]`,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  sensitive=true,
+}
+
+\lstdefinelanguage{Rust}{
+  morekeywords={as, break, const, continue, crate, else, enum, extern,
+    false, fn, for, if, impl, in, let, loop, match, mod, move, mut,
+    pub, ref, return, self, Self, static, struct, super, trait, true,
+    type, unsafe, use, where, while, async, await, dyn, abstract,
+    become, box, do, final, macro, override, priv, typeof, unsized,
+    virtual, yield, i8, i16, i32, i64, i128, isize, u8, u16, u32, u64,
+    u128, usize, f32, f64, bool, char, str, String, Vec, Option, Result,
+    Some, None, Ok, Err},
+  morestring=[b]",
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  sensitive=true,
+}
+
+\lstdefinelanguage{Kotlin}{
+  morekeywords={abstract, actual, annotation, as, break, by, catch, class,
+    companion, const, constructor, continue, crossinline, data, delegate,
+    do, dynamic, else, enum, expect, external, false, field, final,
+    finally, for, fun, get, if, import, in, infix, init, inline, inner,
+    interface, internal, is, it, lateinit, noinline, null, object, open,
+    operator, out, override, package, private, protected, public, reified,
+    return, sealed, set, super, suspend, tailrec, this, throw, true, try,
+    typealias, typeof, val, var, vararg, when, where, while},
+  morestring=[b]",
+  morestring=[b]',
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  sensitive=true,
+}
+
+\lstdefinelanguage{Swift}{
+  morekeywords={actor, any, associatedtype, async, await, break, case,
+    catch, class, continue, default, defer, deinit, do, else, enum,
+    extension, fallthrough, false, fileprivate, for, func, guard, if,
+    import, in, init, inout, internal, is, let, nil, open, operator,
+    optional, override, private, protocol, public, repeat, required,
+    rethrows, return, self, Self, some, static, struct, subscript, super,
+    switch, throw, throws, true, try, typealias, var, weak, where, while},
+  morestring=[b]",
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  sensitive=true,
+}
+
+\lstdefinelanguage{JSON}{
+  morestring=[b]",
+  literate=
+    *{:}{{{\color{codeblue}:}}}{1}
+    {,}{{{\color{codeblue},}}}{1}
+    {\{}{{{\color{codeblue}\{}}}{1}
+    {\}}{{{\color{codeblue}\}}}}{1}
+    {[}{{{\color{codeblue}[}}}{1}
+    {]}{{{\color{codeblue}]}}}{1}
+    {true}{{{\color{codeorange}true}}}{4}
+    {false}{{{\color{codeorange}false}}}{5}
+    {null}{{{\color{codeorange}null}}}{4},
+}
+
+\lstdefinelanguage{Dockerfile}{
+  morekeywords={FROM, AS, RUN, CMD, LABEL, MAINTAINER, EXPOSE, ENV, ADD,
+    COPY, ENTRYPOINT, VOLUME, USER, WORKDIR, ARG, ONBUILD, STOPSIGNAL,
+    HEALTHCHECK, SHELL},
+  morestring=[b]",
+  morestring=[b]',
+  morecomment=[l]{\#},
+  sensitive=false,
+}
+
+\lstdefinelanguage{HCL}{
+  morekeywords={resource, data, variable, output, locals, module, provider,
+    terraform, backend, required_providers, required_version, count,
+    for_each, depends_on, lifecycle, provisioner, connection, dynamic,
+    content, source, version, type, default, description, sensitive,
+    validation, nullable, value, true, false, null},
+  morestring=[b]",
+  morestring=[b]',
+  morecomment=[l]{\#},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  sensitive=true,
+}
+
+\lstdefinelanguage{TOML}{
+  morestring=[b]",
+  morestring=[b]',
+  morecomment=[l]{\#},
+  literate=
+    *{true}{{{\color{codeorange}true}}}{4}
+    {false}{{{\color{codeorange}false}}}{5},
+  sensitive=true,
+}
+
+% estilo de código para yaml (hereda de default)
 \lstdefinestyle{yaml}{
+  style=default,
   basicstyle=\ttfamily\footnotesize\color{darkgreen}\bfseries,
-  rulecolor=\color{black},
   string=[s]{'}{'},
   stringstyle=\color{darkgreen},
   comment=[l]{:},
-  commentstyle=\color{blue},
+  commentstyle=\color{codeblue},
   morecomment=[l]{-},
-  numbers=left,
-  numbersep=5pt,
-  numberstyle=\tiny\color{black},
-  backgroundcolor=\color{backcolour},
-  breaklines=true,
-  captionpos=b,
-  keepspaces=true,
-  showspaces=false,
-  showstringspaces=false,
-  showtabs=false,
-  tabsize=2,
   breakatwhitespace=true,
-  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
 }
