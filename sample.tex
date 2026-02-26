@@ -97,6 +97,8 @@ A continuación, dos ejemplos de tablas.
 Es importante ver como, al incluir tablas correctamente etiquetadas éstas son añadidas en el índice de tablas. Lo mismo ocurre con las imágenes.
 De igual forma que con las imágenes, también se puede hacer una referencia a la Tabla~\ref{tab:tab1} o la Sección~\ref{sec:sec21} si se coloca la etiqueta label correspondiente.
 
+También se pueden usar referencias completas con \verb|\fullref|, por ejemplo: \fullref{sec:sec21}. O referencias parciales con \verb|\halfref|: \halfref{tab:tab1}{Tabla 1}.
+
 \chapter{Titulo del capitulo 2}
 \section{Nombre de la sección 2.1}
 \label{sec:sec21}
@@ -108,3 +110,29 @@ De igual forma que con las imágenes, también se puede hacer una referencia a l
 Para hacer un uso adecuado de la bibliografía, solamente habrá que citar los artículos que correspondan \cite{guerreiro2017mismatch,ministerio_energia,benedetti2018anomaly,antonanzas2016review,darksky}. Pero también se podrán citar de uno en uno como este \cite{garoudja2017enhanced} y \cite{belaout2018multiclass}.
 
 Para hacer estas citas, será necesario el fichero .bib con la información de cada cita, que se puede encontrar en casi todos los repositorios virtuales.
+
+\section{Nombre de la sección 2.3 -- Listados de código}
+
+A continuación, un ejemplo de listado de código en línea:
+
+\begin{lstlisting}[language=Python, caption={Ejemplo de código Python}, label={lst:python}]
+def hello(name: str) -> str:
+    return f"Hello, {name}!"
+
+if __name__ == "__main__":
+    print(hello("world"))
+\end{lstlisting}
+
+También se puede utilizar el estilo \texttt{yaml} para ficheros de configuración:
+
+\begin{lstlisting}[style=yaml, caption={Ejemplo de configuración YAML}, label={lst:yaml}]
+services:
+  web:
+    image: 'nginx:latest'
+    ports:
+      - '8080:80'
+    environment:
+      - NODE_ENV=production
+\end{lstlisting}
+
+Las referencias a listados funcionan igual que con figuras y tablas: Listado~\ref{lst:python}.

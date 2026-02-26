@@ -2,7 +2,7 @@
 
 \usepackage{mathptmx} % Contiene una fuente similar a Times New Roman
 
-\usepackage[spanish, es-tabla]{babel} % Permite escritura en castellano
+\usepackage[spanish, es-tabla, es-noshorthands]{babel} % Permite escritura en castellano
 \usepackage[utf8]{inputenc} % Permite utilizar caracteres UTF8
 
 \usepackage{graphicx} % Para la inclusión de gráficos e imágenes
@@ -10,7 +10,12 @@
 \usepackage[a4paper,top=30mm,left=30mm,right=25mm,bottom=25mm,headheight=20mm]{geometry} % Configuración de los margenes de la página
 
 % Paquetes para que funcione el formato.
+\usepackage{pgfplots}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[toc,page]{appendix}
 \usepackage{titlesec}
+\usepackage{multirow}
 \usepackage{setspace}
 \usepackage{ragged2e}
 \usepackage{fancyhdr}
@@ -23,9 +28,8 @@
 \usepackage{hypcap}
 \usepackage{caption}
 \usepackage{fancyvrb}
-
-\usepackage{hyperref} % Paquete para que las referencias funcionen, y permite introducir links
-\usepackage{xcolor} % Paquete para trabajar con colores (fondo de celdas, color del texto...)
+\usepackage{textcomp}
+\usepackage{listings}
 \input{config.tex}
 
 
@@ -47,13 +51,24 @@
 \hypertarget{lof}{}
 \listoffigures
 
+% Índice de listados
+\newpage
+\addcontentsline{toc}{chapter}{Índice de listados}
+\hypertarget{lol}{}
+\lstlistoflistings
+
 \justify{} % Texto justificado
 \setlength{\parskip}{\baselineskip} % Separación entre párrafos de 1 linea
 \onehalfspacing{}
 
 %% El contenido de la memoria, dividido en capítulos:
-\input{sections/1_intro.tex}
+\input{sections/10_intro.tex}
 \input{sections/concl.tex}
+
+%% Anexos
+% \begin{appendices}
+% \input{sections/a1_ejemplo.tex}
+% \end{appendices}
 
 %% Esto incluirá la bibliografía correctamente en nuestro trabajo
 \newpage % En una nueva página
