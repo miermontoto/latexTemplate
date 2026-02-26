@@ -27,15 +27,15 @@
 \titlespacing*{\chapter}{0pt}{-62pt}{0pt}
 
 \titleformat{\section}[block]
-  {\normalfont\Large\bfseries}{\thesection.}{4pt}{\Large}
+  {\needspace{12\baselineskip}\normalfont\Large\bfseries}{\thesection.}{4pt}{\Large}
 \titlespacing*{\section}{0pt}{\baselineskip}{0pt}
 
 \titleformat{\subsection}[block]
-  {\normalfont\large\bfseries}{\thesubsection.}{4pt}{\normalsize\large}
+  {\needspace{14\baselineskip}\normalfont\large\bfseries}{\thesubsection.}{4pt}{\normalsize\large}
 \titlespacing*{\subsection}{0pt}{0pt}{0pt}
 
 \titleformat{\subsubsection}[block]
-  {\normalfont\normalsize\bfseries}{\thesubsubsection.}{4pt}{\normalsize}
+  {\needspace{8\baselineskip}\normalfont\normalsize\bfseries}{\thesubsubsection.}{4pt}{\normalsize}
 \titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
 
 \def\tablename{Tabla}
@@ -118,6 +118,10 @@
   backgroundcolor=\color{backcolour},
   rulecolor=\color{gris},
   frame=single,
+  xleftmargin=4pt,
+  xrightmargin=4pt,
+  aboveskip=8pt,
+  belowskip=8pt,
   postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
 }
 

@@ -69,28 +69,28 @@ A continuación, dos ejemplos de tablas.
 \begin{table}
     \centering
     \begin{tabular}{rcl}
-        \hline \hline
-            A & B & C \\ \hline
+        \toprule
+            A & B & C \\ \midrule
          1 & 2 & 3 \\
          1 & 2 & 3 \\
          1 & 2 & 3 \\
-        \hline \hline
+        \bottomrule
     \end{tabular}
-    \caption{Titulo de la tabla 1}
+    \caption{Tabla con booktabs}
     \label{tab:tab1}
 \end{table}
 
 \begin{table}
     \centering
-    \begin{tabular}{lll}
-        \hline \hline
-            A & B & C \\ \hline
-         1 & 2 & 3 \\
-         1 & 2 & 3 \\
-         1 & 2 & 3 \\
-        \hline \hline
-    \end{tabular}
-    \caption{Titulo de la tabla 2}
+    \begin{tabularx}{\textwidth}{lXr}
+        \toprule
+            Columna fija & Columna flexible & Valor \\ \midrule
+         Elemento 1 & Este texto se expande para llenar el ancho de la página & 42 \\
+         Elemento 2 & La columna X se ajusta automáticamente & 17 \\
+         Elemento 3 & Útil para tablas con contenido de longitud variable & 99 \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Tabla con tabularx (ancho completo)}
     \label{tab:tab2}
 \end{table}
 
