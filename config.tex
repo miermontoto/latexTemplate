@@ -269,3 +269,44 @@
   morecomment=[l]{-},
   breakatwhitespace=true,
 }
+
+%% macros de utilidad
+%% (requieren graphicx, float, xcolor; ya cargados en main.tex)
+
+% separador de navegación por menús/rutas. evita el glyph problemático de ">"
+% en modo texto. uso: \texttt{Setup} \ra \texttt{Integration} \ra \texttt{New}
+\newcommand{\ra}{~\textcolor{codeblue}{$\rightarrow$}~}
+
+% caja resaltada para notas o avisos. uso: \aviso{texto del aviso}
+\newcommand{\aviso}[1]{%
+  \par\noindent
+  \begin{center}
+  \fcolorbox{codeblue}{backcolour}{%
+    \begin{minipage}{0.92\textwidth}
+      \textbf{\color{codeblue}Nota:}~#1
+    \end{minipage}}
+  \end{center}
+  \par
+}
+
+% inserción de capturas/figuras tolerante a ficheros ausentes.
+% si images/screenshots/<fichero> existe, se incluye; si no, se dibuja un
+% marcador "captura pendiente" con el nombre esperado, de modo que el documento
+% compila y la maquetación es visible antes de tener las imágenes finales.
+% uso: \captura{nombre.png}{pie de figura}
+\newcommand{\captura}[2]{%
+  \begin{figure}[H]
+    \centering
+    \IfFileExists{images/screenshots/#1}{%
+      \includegraphics[width=0.9\textwidth]{screenshots/#1}%
+    }{%
+      \setlength{\fboxsep}{0pt}%
+      \fbox{\begin{minipage}[c][4.2cm][c]{0.9\textwidth}%
+        \centering\color{codegray}\itshape
+        [\,captura pendiente: \texttt{#1}\,]
+      \end{minipage}}%
+    }
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
